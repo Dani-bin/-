@@ -1,0 +1,20 @@
+/**app.wxss**/
+@import 'miniprogram_npm/@vant/weapp/common/index.wxss';
+page{
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+  Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei',
+  sans-serif;
+  --theme-color:#3eb19e;
+  --success-color:#07c160;
+  --red-color:#ff0000;
+  --background-color:#f8f6f6;
+  --tab-active-text-color: var(--theme-color);
+  --tabs-bottom-bar-color: var(--theme-color);
+} 
+.success{
+  color:var(--success-color);
+}
+.error{
+  color: var(--red-color);
+}

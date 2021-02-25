@@ -1,0 +1,79 @@
+<!-- pages/wdct/wdct.wxml -->
+<view class="wdct-page">
+  <view wx:if="{{testType==='pending'&&allTmList.length>0}}" bindtouchstart="touchstart" bindtouchend="touchend"
+    class="wdct-test">
+    <van-sticky>
+      <view class="page-header van-hairline--bottom">
+        <van-tabs active="{{ active }}" bind:change="changeMode">
+          <van-tab title="答题模式" name='dtms'></van-tab>
+          <van-tab title="背题模式" name='btms'></van-tab>
+        </van-tabs>
+      </view>
+    </van-sticky>
+    <view class="test-content">
+      <view class="test-type">{{nowTestTm.queType==="01"?'单选':(nowTestTm.queType==="02"?'多选':'判断')}}</view>
+      <text class="test-tg">{{nowTestTm.title}}</text>
+    </view>
+    <!-- 回答完：回答正确（正确选项：success,错误：error） -->
+    <view wx:for="{{nowTestTm.qbSubjectItems}}" bindtap="selectCode" data-code='{{item.code}}' data-idx='{{index}}'
+      class="test-option {{item.dxClssName}}">
+      <view class="option-code">
+        <image wx:if='{{getValue.valFn(item,"className",active) === "success"}}' src='../../images/home/success.png'>
+        </image>
+        <image wx:if='{{getValue.valFn(item,"className",active) === "error"}}' src='../../images/home/error.png'>
+        </image>
+        <!-- 未作回答；回答完，且回答正确，正确答案不是这个选项 -->
+        <!-- <text wx:if='{{!item["noSowCode"+active==="dtms"?"":"btms"]}}' -->
+        <text wx:if='{{!getValue.valFn(item,"noSowCode",active)}}'
+          class='{{getValue.valFn(item,"className",active)}}'>{{item.code}}.</text>
+      </view>
+      <view class='option-content {{getValue.valFn(item,"className",active)}}'>{{item.content}}</view>
+    </view>
+    <wxs module="getValue">
+      var valFn = function (obj, key, active) {
+        var name = active === "dtms" ? "" : "btms"
+        var className = obj[key + name]
+        return className
+      }
+      module.exports = {
+        valFn: valFn
+      };
+    </wxs>
+    <view class="btn-box">
+      <view class="last-next">
+        <van-button type="primary" disabled='{{nowTestIndex===0}}' bindtap="lastTm" class="last-btn">上一题</van-button>
+        <van-button type="primary" disabled='{{nowTestIndex===allTmList.length-1}}' bindtap="nextTm" class="next-btn">下一题
+        </van-button>
+      </view>
+      <van-button type="primary" disabled='{{nowTestTm.answerStatus}}' wx:if="{{nowTestTm.queType==='02'}}" block
+        bindtap="submitTm" class="test-btn">提交</van-button>
+    </view>
+    <view class="footer-box">
+      <view class="test-complete-msg">
+        <image src='../../images/home/success.png'></image>
+        <test>{{successList.length}}</test>
+      </view>
+      <view class="test-complete-msg">
+        <image src='../../images/home/error.png'></image>
+        <test>{{errorList.length}}</test>
+      </view>
+      <view bindtap="seeSummary" class="test-complete-msg">
+        <image src='../../images/home/test-num.png'></image>
+        <test>{{nowTestIndex+1}} /{{allTmList.length}}</test>
+      </view>
+      <view bindtap="collectionTm" class="test-complete-msg test-submit">
+        <image wx:if='{{nowTestTm.isCollection}}' src="../../images/home/love-red.png"></image>
+        <image wx:else src='../../images/home/love-gray.png'></image>
+        <test>收藏</test>
+      </view>
+    </view>
+    <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 90%" bind:close="onClose">
+      <view class="subject-box">
+        <text wx:for='{{allTmList}}' bindtap="selectTm" data-idx='{{index}}'
+          class="{{item.answerStatus?(item.isCorrect?'success':'error'):''}}">{{index+1}}.</text>
+      </view>
+    </van-popup>
+  </view>
+  <van-empty wx:if="{{testType==='pending'&&allTmList.length===0}}" description="暂无数据" style="margin:auto;" />
+</view>
+<van-toast id="van-toast" />

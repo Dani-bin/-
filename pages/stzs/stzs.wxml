@@ -1,0 +1,48 @@
+<!--pages/stzs/stzs.wxml-->
+<view class="stzs-page">
+  <van-sticky>
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" use-action-slot bind:change="onChange"
+      bind:search="onSearch">
+      <!-- <view slot="action" bind:tap="onSearch">搜索</view> -->
+    </van-search>
+    <view class="search-box">
+      <van-button type="primary" bind:tap="onSearch" class="search-btn">立即搜索</van-button>
+    </view>
+  </van-sticky>
+  <scroll-view scroll-y="true" refresher-enabled refresher-triggered='{{refreshFlag}}' bindrefresherrefresh="refresh"
+    bindscrolltolower="lower" class="scroll-box">
+    <view wx:for="{{searchTestList}}">
+      <view class="test-content">
+        <view class="test-type">{{item.queType==="01"?'单选':(item.queType==="02"?'多选':'判断')}}</view>
+        <text class="test-tg">{{item.title}}</text>
+      </view>
+      <!-- 回答完：回答正确（正确选项：success,错误：error） -->
+      <view wx:for="{{item.qbSubjectItems}}" bindtap="selectCode" data-code='{{item.code}}' data-idx='{{index}}'
+        class="test-option {{item.dxClssName}}">
+        <view class="option-code">
+          <image wx:if='{{getValue.valFn(item,"className",active) === "success"}}' src='../../images/home/success.png'>
+          </image>
+          <image wx:if='{{getValue.valFn(item,"className",active) === "error"}}' src='../../images/home/error.png'>
+          </image>
+          <!-- 未作回答；回答完，且回答正确，正确答案不是这个选项 -->
+          <!-- <text wx:if='{{!item["noSowCode"+active==="dtms"?"":"btms"]}}' -->
+          <text wx:if='{{!getValue.valFn(item,"noSowCode",active)}}'
+            class='{{getValue.valFn(item,"className",active)}}'>{{item.code}}.</text>
+        </view>
+        <view class='option-content {{getValue.valFn(item,"className",active)}}'>{{item.content}}</view>
+      </view>
+      <wxs module="getValue">
+        var valFn = function (obj, key, active) {
+          var name = active === "dtms" ? "" : "btms"
+          var className = obj[key + name]
+          return className
+        }
+        module.exports = {
+          valFn: valFn
+        };
+      </wxs>
+    </view>
+    <van-empty wx:if="{{searchTestList.length===0}}" description="暂无数据" style="margin:auto;" />
+  </scroll-view>
+</view>
+<van-toast id="van-toast" />

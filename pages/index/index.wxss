@@ -1,0 +1,35 @@
+/**index.wxss**/
+
+.home-box{
+  height: 100%;
+  background-color: rgb(245, 245, 245);
+}
+.app-box{
+  /* display: flex;
+  justify-content: space-around; */
+  background-color: white;
+  padding: 20rpx 0;
+  margin: 10rpx 0;
+}
+.app-box::after{
+  clear: both;
+  content: "";
+  display: block; 
+  height: 0; 
+}
+.app-box .app{
+  float: left;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: rgb(129, 129, 129);
+}
+
+.app-box .app image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-bottom: 10rpx;
+}

@@ -1,0 +1,10 @@
+<view class='my-box'>
+	<view class='user-head'>
+		<image class='bg-img' src="../../images/home/my-back.jpg" />
+		<view class="userinfo-avatar">
+			<open-data type="userAvatarUrl"></open-data>
+		</view>
+		<open-data class='userNickName' type="userNickName"></open-data>
+	</view>
+	<van-cell bindtap="goMdxx" title="我的信息" is-link />
+</view>

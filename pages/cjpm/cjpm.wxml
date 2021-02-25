@@ -1,0 +1,22 @@
+<!--pages/cjpm/cjpm.wxml-->
+<view class="cjpm-page">
+  <view wx:for='{{cjpmList}}' class="cjpm-box">
+    <view class="ranking">
+      <image wx:if="{{index===0}}" src="../../images/cjpm/jp.png"></image>
+      <image wx:elif="{{index===1}}" src="../../images/cjpm/yp.png"></image>
+      <image wx:elif="{{index===2}}" src="../../images/cjpm/tp.png"></image>
+      <text wx:else>4</text>
+    </view>
+    <view class="user-msg">
+      <view class="name-time">
+        <text class="name">{{item.userName}}</text>
+        <text class="time">{{item.end_time}}</text>
+      </view>
+    </view>
+    <view class="test-score">
+      获得<text>{{item.score}}</text>分
+    </view>
+  </view>
+  <van-empty wx:if="{{cjpmList.length===0}}" description=" 暂无排名，等你来挑战！" class="none-data" />
+</view>
+<van-toast id="van-toast" />

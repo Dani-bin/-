@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tzgg/tzgg",
+    "pages/my/my",
+    "pages/wdxx/wdxx",
+    "pages/stzs/stzs",
+    "pages/ksjl/ksjl",
+    "pages/cjpm/cjpm",
+    "pages/wdct/wdct",
+    "pages/rclx/rclx",
+    "pages/wdsc/wdsc",
+    "pages/ztmn/ztmn",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3eb19e",
+    "navigationBarTitleText": "柏琅教育",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [{
+        "selectedIconPath": "images/home-active.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/my-active.png",
+        "iconPath": "images/my.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-count-down": "@vant/weapp/count-down/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-toast": "@vant/weapp/toast/index"
+  }
+}

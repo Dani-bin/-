@@ -1,0 +1,26 @@
+<view class="login-box">
+	<view class='login-content'>
+		<view class="title">
+			<image src="../../images/home/home.png" />
+			<view>柏琅教育</view>
+		</view>
+		<view class="input-box">
+			<view class="id-number">
+				<image src="../../images/card.png" />
+				<input class="number-input" bindinput="bindCardInput" maxlength="50" placeholder="请输入证件号码" />
+			</view>
+			<view class="id-number">
+				<image src="../../images/name.png" />
+				<input class="number-input" bindinput="bindNameInput" maxlength="20" placeholder="请输入姓名" />
+			</view>
+			<view class="id-number">
+				<image src="../../images/question.png" />
+				<input class="number-input" value="{{ categoryMc }}" bindtap="selectTk" disabled placeholder="请选择题库" />
+			</view>
+			<button bindtap="comfirm" hover-class='click-btn'>确认绑定</button>
+		</view>
+	</view>
+</view>
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+	<van-picker show-toolbar  columns="{{ rylbList }}" bind:cancel="onClose" bind:confirm="onConfirm" />
+</van-popup>

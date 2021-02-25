@@ -1,0 +1,8 @@
+<!--pages/wdxx/wdxx.wxml-->
+<view class="wdxx-page">
+  <van-cell-group>
+  <van-cell title="我的姓名" value="{{userName}}" />
+  <van-cell title="项目" value="{{categoryName}}" />
+  <van-cell title="证件号" value="{{zjh}}" />
+</van-cell-group>
+</view>

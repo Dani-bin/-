@@ -1,0 +1,114 @@
+/* pages/stzs/stzs.wxss */
+.stzs-page{
+  height: 100%;
+}
+.search-box{
+  text-align: center;
+}
+.search-btn button{
+  width: 500rpx;
+  border-radius: 40rpx;
+  background-color: var(--theme-color);
+}
+.test-content{
+  position: relative;
+  text-indent: 100rpx;
+  padding: 20rpx 10rpx 40rpx;
+  background-color: white;
+}
+.test-content .test-tg{
+  font-size: 34rpx;
+  line-height: 60rpx;
+  position: relative;
+}
+.test-type{
+  position: absolute;
+  left: 0;
+  top: 26rpx;
+  text-indent: 0rpx;
+  background-color: var(--theme-color);
+  color: white;
+  width: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  padding: 4rpx 8rpx;
+}
+
+.test-option{
+  min-height: 60rpx;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 20rpx;
+}
+
+.test-option:nth-of-type(even){
+  background-color: var(--background-color);
+}
+
+.multiple-option {
+  color: #1989fa;
+}
+
+.option-code {
+  width: 80rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+.option-code text{
+  display: inline-block;
+}
+
+.option-code image {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.option-content {
+  flex-grow: 1;
+  width: 80%;
+  line-height: 40rpx;
+}
+
+.analysis-title{
+  padding: 0 20rpx;
+  margin: 20rpx 0;
+}
+.analysis-title text {
+  position: relative;
+  margin-left: 20rpx;
+}
+.analysis-title text ::before{
+  content: '';
+  display: inline-block;
+  width: 6rpx;
+  height: 40rpx;
+  background-color: var(--theme-color);
+  position: absolute;
+  left: -14rpx;
+  top: -2rpx;
+}
+.analysis-content{
+  padding: 0 20rpx;
+  color: #868686;
+  line-height: 52rpx;
+  padding-bottom: 100rpx;
+}
+
+
+.scroll-box{
+  height: calc(100% - 110rpx);
+}
+.scroll-view-item{
+  height: 600rpx;
+  width: 100%;
+}
+.demo1{
+  background-color: red;
+}
+.demo2{
+  background-color: yellow;
+}
+.demo3{
+  background-color: #868686;
+}

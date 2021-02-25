@@ -1,0 +1,51 @@
+/* pages/login/login.wxss */
+.login-box{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding:0 60rpx;
+  background-image: linear-gradient(#86d2c5, #70d6c5);
+}
+.login-content {
+  height: 80%;
+  width: 100%;
+}
+.login-content .title{
+  font-size: 56rpx;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 100rpx;
+}
+.login-content .title image{
+  width: 180rpx;
+  height: 150rpx;
+}
+.input-box .id-number{
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid rgb(255, 255, 255);
+  margin-bottom: 60rpx;
+  padding-bottom: 10rpx;
+}
+.input-box .id-number image{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+.input-box .id-number input{
+  flex-grow: 1;
+  color: #4c7e77;
+  width: 80%;
+}
+
+.input-box button{
+  margin-top: 120rpx;
+ background-color: #68978f;
+ color: white;
+ font-weight: normal;
+ /* border:2rpx solid white ; */
+}
+.input-box .click-btn{
+ opacity: 0.7;
+}

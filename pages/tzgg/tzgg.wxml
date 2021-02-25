@@ -1,0 +1,8 @@
+<!--pages/tzgg/tzgg.wxml-->
+<view class="tzgg-page">
+  <van-collapse value="{{ activeNames }}" bind:change="onChange">
+    <van-collapse-item wx:for="{{noticeList}}" title="{{item.notice_title}}" name="{{index}}">
+      <rich-text nodes="{{item.notice_content}}"></rich-text>
+    </van-collapse-item>
+  </van-collapse>
+</view>

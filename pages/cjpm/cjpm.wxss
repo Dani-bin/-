@@ -1,0 +1,54 @@
+/* pages/cjpm/cjpm.wxss */
+.cjpm-page{
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  background-color: var(--theme-color);
+  padding: 20rpx;
+}
+.cjpm-box{
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+.ranking image{
+  width: 60rpx;
+  height: 60rpx;
+}
+.ranking text{
+  display: inline-block;
+  width: 60rpx;
+  text-align: center;
+  font-size: 46rpx;
+  font-weight: bold;
+}
+.user-msg{
+  flex-grow: 1;
+  display: flex;
+}
+
+.name-time{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 36rpx;
+  margin-left: 20rpx;
+}
+.name-time .time{
+  font-weight: normal;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+  .test-score text{
+  color: var(--red-color);
+}
+.none-data{
+  margin: auto;
+}
+.none-data .van-empty__description{
+  color: white;
+}

@@ -1,0 +1,41 @@
+/* pages/ksjl/ksjl.wxss */
+.ksjl-page{
+  padding: 20rpx;
+}
+.title{
+  font-size: 28rpx;
+  color: #969696;
+}
+.test-box{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.test-index{
+  display: inline-block;
+  width: 56rpx;
+  height: 56rpx;
+  text-align: center;
+  line-height: 56rpx;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: var(--theme-color);
+}
+.test-msg{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 20rpx;
+}
+.time{
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+.score text{
+  
+}
+.none-data{
+  text-align: center;
+  margin-top: 200rpx;
+}

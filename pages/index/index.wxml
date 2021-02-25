@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="home-box">
+	<van-notice-bar left-icon="volume-o" scrollable="{{scrollable}}" bindtap="seeNotice" text="{{notice}}" />
+	<view wx:if="{{showFlag1}}" class="app-box">
+		<view bindtap="goMenu" data-type="ztmn" wx:if="{{isShow.showFn(menuList,'ztmn')}}" class="app">
+			<image src="../../images/home/ztmn.png" />
+			<text>真题模拟</text>
+		</view>
+		<view bindtap="goMenu" data-type="rclx" wx:if="{{isShow.showFn(menuList,'rclx')}}" class="app">
+			<image src="../../images/home/rclx.png" />
+			<text>日常练习</text>
+		</view>
+		<view bindtap="goMenu" data-type="wdsc" wx:if="{{isShow.showFn(menuList,'wdsc')}}" class="app">
+			<image src="../../images/home/wdsc.png" />
+			<text>我的收藏</text>
+		</view>
+		<view bindtap="goMenu" data-type="wdct" wx:if="{{isShow.showFn(menuList,'wdct')}}" class="app">
+			<image src="../../images/home/wdct.png" />
+			<text>我的错题</text>
+		</view>
+	</view>
+	<view wx:if="{{showFlag2}}" class="app-box">
+		<view bindtap="goMenu" data-type="cjpm" wx:if="{{isShow.showFn(menuList,'cjpm')}}" class="app">
+			<image src="../../images/home/cjpm.png" />
+			<text>成绩排名</text>
+		</view>
+		<view bindtap="goMenu" data-type="ksjl" wx:if="{{isShow.showFn(menuList,'ksjl')}}" class="app">
+			<image src="../../images/home/ksjl.png" />
+			<text>考试记录</text>
+		</view>
+	</view>
+	<van-cell bindtap="goMenu" data-type="wdtk" title="我的题库" value="{{categoryObj.text}}" is-link />
+	<van-cell bindtap="goMenu" data-type="bdzh" wx:if="{{isShow.showFn(menuList,'bdzh')}}" title="绑定账号" is-link />
+	<van-cell bindtap="goMenu" data-type="stzs" wx:if="{{isShow.showFn(menuList,'stzs')}}" title="搜题助手" is-link />
+	<wxs module="isShow">
+		var showFn = function (list, key) {
+			return list.indexOf(key) !== -1;
+		}
+		module.exports = {
+			showFn: showFn
+		};
+	</wxs>
+</view>
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+	<van-picker show-toolbar columns="{{ rylbList }}" bind:cancel="onClose" bind:confirm="onConfirm" />
+</van-popup>

@@ -1,0 +1,18 @@
+<!--pages/ksjl/ksjl.wxml-->
+<view class="ksjl-page">
+  <text class="title">您所参与的考试记录：</text>
+  <view wx:for="{{testRecordList}}" class="test-box van-hairline--bottom">
+    <text class="test-index">{{index+1}}</text>
+    <view class="test-msg">
+      <text class="name">{{userName}}</text>
+      <text class="time">{{item.endTime}}</text>
+    </view>
+    <view class="score">
+      {{item.score}}分
+    </view>
+  </view>
+  <view wx:if="{{testRecordList.length===0}}">
+    <van-empty description=" 暂无记录" />
+  </view>
+</view>
+<van-toast id="van-toast" />
