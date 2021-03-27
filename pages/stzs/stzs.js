@@ -64,18 +64,18 @@ Page({
   onSearch(flag) {
     if (flag) {
       this.setData({
-        isOver:false,
+        isOver: false,
         total: 0,
-        searchTestList:[]
+        searchTestList: []
       })
     }
     let value = this.data.value
-    if (this.data.isOver||value==='') {
+    if (this.data.isOver || value === '') {
       console.log('查询完了或为空')
       return
     }
     Toast.loading({
-      duration: 0, 
+      duration: 0,
       message: '加载中...',
       forbidClick: true,
     });
@@ -90,6 +90,14 @@ Page({
       })
       let searchTestList = this.data.searchTestList
       let arr = res.data.rows.map(nowTestTm => {
+        // 重新组装正确答案answer
+        let answerList = []
+        for (let j = 0; j < nowTestTm.qbSubjectItems.length; j++) {
+          if (nowTestTm.qbSubjectItems[j].correct === '1') {
+            answerList.push(nowTestTm.qbSubjectItems[j].code)
+          }
+        }
+        nowTestTm.answer = answerList.join()
         let key = this.data.active
         if (nowTestTm.queType === "01" || nowTestTm.queType === "03") {
           nowTestTm.qbSubjectItems.forEach(val => {

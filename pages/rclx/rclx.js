@@ -35,7 +35,7 @@ Page({
         }
       })
     } else {
-      let answerList = nowTestTm.answer.split('')
+      let answerList = nowTestTm.answer.split(',')
       nowTestTm.qbSubjectItems.forEach(val => {
         val['noSowCode' + key] = true
         if (answerList.includes(val.code)) {
@@ -85,7 +85,7 @@ Page({
       })
       return
     }
-    let answerList = nowTestTm.answer.split('')
+    let answerList = nowTestTm.answer.split(',')
     let successList = this.data.successList
     let errorList = this.data.errorList
     nowTestTm.answerStatus = true // 是否答完
@@ -433,6 +433,16 @@ Page({
           allTmList = allTmList.concat(item.subjects)
         })
       })
+      for (let i = 0; i < allTmList.length; i++) {
+        let answerList = []
+        // 重新组装正确答案answer
+        for (let j = 0; j < allTmList[i].qbSubjectItems.length; j++) {
+          if (allTmList[i].qbSubjectItems[j].correct === '1') {
+            answerList.push(allTmList[i].qbSubjectItems[j].code)
+          }
+        }
+        allTmList[i].answer = answerList.join()
+      }
       this.setData({
         subjectRuleObj,
         allTmList: allTmList.sort(randomsort)
