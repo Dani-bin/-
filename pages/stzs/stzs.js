@@ -65,6 +65,7 @@ Page({
     if (flag) {
       this.setData({
         isOver: false,
+        pageNum: 1,
         total: 0,
         searchTestList: []
       })

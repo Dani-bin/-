@@ -1,5 +1,5 @@
 const host = 'https://wx.yuchenchuanmei.com/api'
-// const host = 'http://294582yo61.eicp.vip:43886'
+// const host = 'http://294582yo61.eicp.vip'
 const request = (url, options) => {
   return new Promise((resolve, reject) => {
     const app = getApp()
@@ -11,10 +11,10 @@ const request = (url, options) => {
       url: `${host}${url}`,
       method: options.method,
       data: {
-        ...options.data,
         userId,
         openId,
-        subType
+        subType,
+        ...options.data,
       },
       header: {
         'content-type': options.contentType ? options.contentType : (options.method === 'GET' ? 'application/json; charset=UTF-8' : 'application/x-www-form-urlencoded'),

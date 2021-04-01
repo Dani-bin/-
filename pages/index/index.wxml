@@ -28,6 +28,10 @@
 			<image src="../../images/home/ksjl.png" />
 			<text>考试记录</text>
 		</view>
+		<view bindtap="goMenu" data-type="yklx" wx:if="{{isShow.showFn(menuList,'yklx')}}" class="app">
+			<image src="../../images/home/yklx.png" />
+			<text>游客练习</text>
+		</view>
 	</view>
 	<van-cell bindtap="goMenu" data-type="wdtk" title="我的题库" value="{{categoryObj.text}}" is-link />
 	<van-cell bindtap="goMenu" data-type="bdzh" wx:if="{{isShow.showFn(menuList,'bdzh')}}" title="绑定账号" is-link />

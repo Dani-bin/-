@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     notice: '',
-    scrollable:true,
+    scrollable: true,
     show: false,
     rylbList: [],
     menuList: [],
@@ -38,6 +38,12 @@ Page({
     if (key === 'bdzh') {
       wx.navigateTo({
         url: '/pages/login/login',
+      })
+      return
+    }
+    if (key === 'yklx') {
+      wx.navigateTo({
+        url: '/pages/yklx/yklx',
       })
       return
     }
@@ -81,7 +87,8 @@ Page({
           userName: val.userName,
           zjh: val.zjh,
           categoryName: val.categoryName,
-          text: val.categoryName + '-' + val.userName,
+          text: val.categoryName,
+          // text: val.categoryName + '-' + val.userName,
           value: val.category
         }))
       })
@@ -123,7 +130,7 @@ Page({
           if (val.dictValue === 'ztmn' || val.dictValue === 'rclx' || val.dictValue === 'wdct' || val.dictValue === 'wdsc') {
             num1++
           }
-          if (val.dictValue === 'cjpm' || val.dictValue === 'ksjl') {
+          if (val.dictValue === 'cjpm' || val.dictValue === 'ksjl' || val.dictValue === 'yklx') {
             num2++
           }
           return val.dictValue
@@ -136,11 +143,11 @@ Page({
       }
     })
     app.$api.get('/qb/unauth/userwx/getNotice').then(res => {
-      let notice=res.data.map(val => {
+      let notice = res.data.map(val => {
         return val.notice_title
       }).join(`；   `)
       this.setData({
-        scrollable:notice.length>20,
+        scrollable: notice.length > 20,
         notice
       })
     })

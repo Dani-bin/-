@@ -1,17 +1,18 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/stzs/stzs",
+    "pages/yklx/yklx",
+    "pages/login/login",
     "pages/tzgg/tzgg",
     "pages/my/my",
     "pages/wdxx/wdxx",
-    "pages/stzs/stzs",
     "pages/ksjl/ksjl",
     "pages/cjpm/cjpm",
     "pages/wdct/wdct",
     "pages/rclx/rclx",
     "pages/wdsc/wdsc",
-    "pages/ztmn/ztmn",
-    "pages/login/login"
+    "pages/ztmn/ztmn"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,7 +21,8 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "selectedIconPath": "images/home-active.png",
         "iconPath": "images/home.png",
         "pagePath": "pages/index/index",

@@ -1,0 +1,123 @@
+<!-- pages/ztmn/ztmn.wxml -->
+<view class="ztmn-page">
+  <view class="login-box" wx:if="{{testType==='start'}}">
+    <view class='login-content'>
+      <view class="input-box">
+        <!-- <view class="id-number">
+          <image src="../../images/card.png" />
+          <input class="number-input" bindinput="bindCardInput" maxlength="50" placeholder="请输入证件号码" />
+        </view> -->
+        <view class="id-number">
+          <image src="../../images/name.png" />
+          <input class="number-input" bindinput="bindNameInput" maxlength="20" placeholder="请输入姓名" />
+        </view>
+        <view class="id-number">
+          <image src="../../images/question.png" />
+          <input class="number-input" value="{{ categoryMc }}" bindtap="selectTk" disabled placeholder="请选择题库" />
+        </view>
+        <button bindtap="comfirm" hover-class='click-btn'>进入练习</button>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{testType==='pending'&&allTmList.length>0}}" bindtouchstart="touchstart" bindtouchend="touchend"
+    class="ztmn-test">
+    <view class="test-header van-hairline--bottom">
+      <image src='../../images/home/clock.png'></image>
+      <test>倒计时：</test>
+      <van-count-down time="{{ time }}" bind:finish="finished" />
+    </view>
+    <!-- <view bindtap="collectionTm" class="collection">
+      <image wx:if='{{nowTestTm.isCollection}}' src="../../images/home/love-red.png"></image>
+      <image wx:else src="../../images/home/love-gray.png"></image>
+    </view> -->
+    <view class="test-content">
+      <view class="test-type">{{nowTestTm.queType==="01"?'单选':(nowTestTm.queType==="02"?'多选':'判断')}}</view>
+      <text class="test-tg">{{nowTestIndex+1}}. {{nowTestTm.title}}</text>
+    </view>
+    <!-- 回答完：回答正确（正确选项：success,错误：error） -->
+    <view wx:for="{{nowTestTm.qbSubjectItems}}" bindtap="selectCode" data-code='{{item.code}}' data-idx='{{index}}'
+      class="test-option {{item.dxClssName}}">
+      <view class="option-code">
+        <image wx:if='{{item.className === "success"}}' src='../../images/home/success.png'></image>
+        <image wx:if='{{item.className === "error"}}' src='../../images/home/error.png'></image>
+        <!-- 未作回答；回答完，且回答正确，正确答案不是这个选项 -->
+        <text wx:if='{{!item.noSowCode}}' class='{{item.className}}'>{{item.code}}.</text>
+      </view>
+      <view class="option-content {{item.className}}">{{item.content}}</view>
+    </view>
+    <view class="btn-box">
+      <view class="last-next">
+        <van-button type="primary" disabled='{{nowTestIndex===0}}' bindtap="lastTm" class="last-btn">上一题</van-button>
+        <van-button type="primary" disabled='{{nowTestIndex===allTmList.length-1}}' bindtap="nextTm" class="next-btn">
+          下一题
+        </van-button>
+      </view>
+      <van-button type="primary" disabled='{{nowTestTm.answerStatus}}' wx:if="{{nowTestTm.queType==='02'}}" block
+        bindtap="submitTm" class="test-btn">提交</van-button>
+    </view>
+    <view class="footer-box">
+      <view class="test-complete-msg">
+        <image src='../../images/home/success.png'></image>
+        <test>{{successList.length}}</test>
+      </view>
+      <view class="test-complete-msg">
+        <image src='../../images/home/error.png'></image>
+        <test>{{errorList.length}}</test>
+      </view>
+      <view bindtap="seeSummary" class="test-complete-msg">
+        <image src='../../images/home/test-num.png'></image>
+        <test>{{nowTestIndex+1}} /{{allTmList.length}}</test>
+      </view>
+      <view bindtap="endTest" class="test-complete-msg success test-submit">
+        <image src='../../images/home/test-submit.png'></image>
+        <test>交卷</test>
+      </view>
+    </view>
+    <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 90%" bind:close="onClose">
+      <view class="subject-box">
+        <text wx:for='{{allTmList}}' bindtap="selectTm" data-idx='{{index}}'
+          class="{{item.answerStatus?(item.isCorrect?'success':'error'):''}}">{{index+1}}.</text>
+      </view>
+    </van-popup>
+  </view>
+  <view wx:if="{{testType==='end'}}" class="test-end">
+    <view class='test-head'>
+      <image class='bg-img' src="../../images/home/test.png" />
+      <view class="test-score">
+        <view class="score-box">
+          <view class="dt-score">
+            答题得分
+            <image src="../../images/home/test-end.png"></image>
+          </view>
+          <view class="score-num">
+            <text>{{TestEndMsg.testScores}}</text>分
+          </view>
+        </view>
+        <view class="score-box">
+          <view class="dt-score">
+            答题用时
+            <image src="../../images/home/test-time.png"></image>
+          </view>
+          <view class="score-num dt-time">
+            {{TestEndMsg.testTime}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="test-cz">
+      <van-cell bindtap="againTest" icon="todo-list-o" is-link>
+        <view slot="title">
+          <view class="van-cell-text">重新考试</view>
+          <view class="van-cell-num">
+            我还能考得更好，再试一次！
+          </view>
+        </view>
+      </van-cell>
+    </view>
+  </view>
+  <van-empty wx:if="{{testType==='pending'&&allTmList.length===0}}" description="暂无数据" style="margin:auto;" />
+</view>
+<van-toast id="van-toast" />
+<van-popup show="{{ tkxzShow }}" position="bottom" bind:close="tkxzonClose">
+  <van-picker show-toolbar columns="{{ rylbList }}" bind:cancel="tkxzonClose" bind:confirm="onConfirm" />
+</van-popup>
