@@ -3,7 +3,7 @@ import api from './utils/api'
 App({
   globalData: {
     // categoryObj: {
-    //   userName: '阿嘎收到',
+    //   userName: '阿嘎收阿松大到',
     //   categoryName: '阿嘎收到',
     //   value: '001',
     //   text:'阿斯弗',
